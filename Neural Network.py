@@ -1,3 +1,10 @@
+#importing libraries
+import pandas as pd
+import numpy as np
+
+
+
+#creating neuron class
 class neuron:
     def __init__(self, weights, bias, inputs):
         self.weights = weights
@@ -11,9 +18,11 @@ class neuron:
             ans += self.weights[i] * self.inputs[i]
         return ans + self.bias
     
-n1 = neuron([1,2,3],5,[2,4,6])
-n2 = neuron([2,5,8], 3.5,[1,4,3])
 
-l1 = [n1,n2]
-for i in l1:
-    print("output:", i.output())
+
+#importing and applying one-hot encoding to the dataset
+df = pd.read_csv("heart.csv")
+df = pd.get_dummies(df, columns=["ChestPainType", "Sex", "RestingECG", "ExerciseAngina", "ST_Slope"])
+
+
+
