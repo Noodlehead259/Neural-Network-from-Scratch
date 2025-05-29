@@ -40,4 +40,21 @@ df = pd.read_csv("heart.csv")
 df = pd.get_dummies(df, columns=["ChestPainType", "Sex", "RestingECG", "ExerciseAngina", "ST_Slope"])
 
 
+#normalizing
+X = df.drop("HeartDisease", axis=1)
+X = X.astype(float).to_numpy()
+X = (X - X.mean(axis=0)) / X.std(axis=0)
 
+y = df["HeartDisease"].values.reshape(-1, 1)
+
+#split manually (80/20)
+split = int(0.8 * len(X))
+X_train, X_test = X[:split], X[split:]
+y_train, y_test = y[:split], y[split:]
+
+#initialize 8 neurons in hidden layer
+np.random.seed(42)
+input_size = X.shape[1]
+hidden_size = 8
+
+hidden_layer = []
