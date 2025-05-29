@@ -70,7 +70,7 @@ output_neuron = neuron(output_weights, output_bias)
 
 #training loop
 learning_rate = 0.01
-epochs = 1000
+epochs = 100
 
 for epoch in range(epochs):
     predictions = []
@@ -136,3 +136,22 @@ for epoch in range(epochs):
 
     if epoch % 10 == 0:
         print(f"Epoch {epoch}, Loss: {loss:.4f}")
+
+
+#evaluation
+correct = 0
+for i in range(len(X_test)):
+    x = X_test[i]
+    #hidden layer
+    hidden_activations = [relu(h.output(x)) for h in hidden_layer]
+    #output
+    z_out = output_neuron.output(np.array(hidden_activations))
+    a_out = sigmoid(z_out)
+    prediction = int(a_out > 0.5)
+    if prediction == y_test[i][0]:
+        correct += 1
+
+print("correct: ", correct)
+
+accuracy = correct / len(X_test)
+print(f"Test Accuracy: {accuracy:.2f}")
