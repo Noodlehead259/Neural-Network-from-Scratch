@@ -70,7 +70,7 @@ output_neuron = neuron(output_weights, output_bias)
 
 #training loop
 learning_rate = 0.01
-epochs = 20
+epochs = 5000
 
 for epoch in range(epochs):
     predictions = []
