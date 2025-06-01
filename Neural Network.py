@@ -1,6 +1,7 @@
 #importing libraries
 import pandas as pd
 import numpy as np
+import csv
 
 
 
@@ -70,7 +71,7 @@ output_neuron = neuron(output_weights, output_bias)
 
 #training loop
 learning_rate = 0.01
-epochs = 100
+epochs = 120
 
 for epoch in range(epochs):
     predictions = []
@@ -155,3 +156,16 @@ print("correct: ", correct)
 
 accuracy = correct / len(X_test)
 print(f"Test Accuracy: {accuracy:.2f}")
+
+final_weights = []
+final_bias = []
+for i in hidden_layer:
+    final_weights.append(i.weights)
+for i in hidden_layer:
+    final_bias.append(i.bias)
+
+weight = pd.DataFrame([final_weights])
+weight.to_csv("weights.csv", mode="a", index=False, header=False)
+
+bias = pd.DataFrame([final_bias])
+bias.to_csv("bias.csv", mode="a", index=False, header=False)
