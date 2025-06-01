@@ -1,7 +1,6 @@
 #importing libraries
 import pandas as pd
 import numpy as np
-import csv
 
 
 
@@ -71,7 +70,7 @@ output_neuron = neuron(output_weights, output_bias)
 
 #training loop
 learning_rate = 0.01
-epochs = 120
+epochs = 20
 
 for epoch in range(epochs):
     predictions = []
