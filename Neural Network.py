@@ -3,7 +3,6 @@ import pandas as pd
 import numpy as np
 
 
-
 #creating neuron class
 class neuron:
     def __init__(self, weights, bias):
